@@ -87,6 +87,8 @@ class Home extends Component {
               title={ product.title }
               thumbnail={ product.thumbnail }
               key={ product.id }
+              productId={ product.id }
+              data={ product }
             />)) }
           </div>
         ) : (
