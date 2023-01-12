@@ -49,11 +49,6 @@ class Home extends Component {
     }
   };
 
-  getID = ({ target }) => {
-    // const { value } = target;
-    console.log(target);
-  };
-
   render() {
     const { categories, products, searched } = this.state;
     return (
@@ -65,7 +60,6 @@ class Home extends Component {
               id={ category.id }
               key={ category.id }
               handleChangeCategory={ this.handleChangeCategory }
-              onClick={ this.getID }
             />)) }
         </nav>
 
@@ -93,14 +87,12 @@ class Home extends Component {
                 to={ `/product-detail/${product.id}` }
                 key={ product.id }
                 data-testid="product-detail-link"
-                onClick={ this.getID }
               >
                 <Card
                   price={ product.price }
                   title={ product.title }
                   thumbnail={ product.thumbnail }
                   key={ product.id }
-                  id={ product.id }
                 />
               </Link>
             )) }
