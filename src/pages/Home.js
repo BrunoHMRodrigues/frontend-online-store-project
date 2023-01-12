@@ -6,6 +6,7 @@ import Card from '../components/Card';
 
 class Home extends Component {
   state = {
+    categorysearch: '',
     categories: [],
     search: '',
     products: [],
@@ -19,6 +20,13 @@ class Home extends Component {
     });
   }
 
+  handleChangeCategory = ({ target }) => {
+    const { value } = target;
+    this.setState({
+      categorysearch: value,
+    }, () => this.handleSearch());
+  };
+
   handleChange = ({ target }) => {
     const { value } = target;
     this.setState({
@@ -27,9 +35,8 @@ class Home extends Component {
   };
 
   handleSearch = async () => {
-    const { search } = this.state;
-    const categoriesId = '';
-    const response = await getProductsFromCategoryAndQuery(categoriesId, search);
+    const { search, categorysearch } = this.state;
+    const response = await getProductsFromCategoryAndQuery(categorysearch, search);
     if (!response.results.length >= 1) {
       this.setState({
         searched: false,
@@ -42,23 +49,18 @@ class Home extends Component {
     }
   };
 
-  // handleSearch = async () => {
-  //   const { search } = this.state;
-  //   const categoriesId = '';
-  //   const response = await getProductsFromCategoryAndQuery(categoriesId, search);
-  //   this.setState({
-  //     products: response.results,
-  //     searched: true,
-  //   });
-  // };
-
   render() {
     const { categories, products, searched } = this.state;
     return (
       <div>
         <nav>
           { categories
-            .map((category) => <Nav name={ category.name } key={ category.id } />) }
+            .map((category) => (<Nav
+              name={ category.name }
+              id={ category.id }
+              key={ category.id }
+              handleChangeCategory={ this.handleChangeCategory }
+            />)) }
         </nav>
 
         <input

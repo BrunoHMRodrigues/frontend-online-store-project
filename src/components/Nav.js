@@ -3,16 +3,17 @@ import propTypes from 'prop-types';
 
 class Nav extends Component {
   render() {
-    const { name } = this.props;
+    const { name, id, handleChangeCategory } = this.props;
     return (
       <div>
         <label htmlFor={ name }>
           <input
             name="category"
-            value={ name }
+            value={ id }
             id={ name }
             type="radio"
             data-testid="category"
+            onClick={ handleChangeCategory }
           />
           { name }
         </label>
@@ -23,6 +24,8 @@ class Nav extends Component {
 
 Nav.propTypes = {
   name: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
+  handleChangeCategory: propTypes.func.isRequired,
 };
 
 export default Nav;
