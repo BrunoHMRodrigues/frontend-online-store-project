@@ -44,7 +44,7 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  price: propTypes.string.isRequired,
+  price: propTypes.number.isRequired,
   title: propTypes.string.isRequired,
   thumbnail: propTypes.string.isRequired,
   productId: propTypes.string.isRequired,
