@@ -6,16 +6,20 @@ class ShoppingCart extends Component {
     const dataStoraged = JSON.parse(localStorage.getItem('productData'));
     return (
       <div>
-        <span data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio.
-        </span>
-        { dataStoraged.map((product) => (<CardCart
-          price={ product.price }
-          title={ product.title }
-          thumbnail={ product.thumbnail }
-          key={ product.id }
-          productId={ product.id }
-        />)) }
+        { localStorage.getItem('productData')
+          ? (
+            dataStoraged.map((product) => (<CardCart
+              price={ product.price }
+              title={ product.title }
+              thumbnail={ product.thumbnail }
+              key={ product.id }
+              productId={ product.id }
+            />)))
+          : (
+            <span data-testid="shopping-cart-empty-message">
+              Seu carrinho está vazio.
+            </span>
+          )}
       </div>
     );
   }
