@@ -82,22 +82,14 @@ class Home extends Component {
             <span data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </span>
-            { products.map((product) => (
-              <Link
-                to={ `/product-detail/${product.id}` }
-                key={ product.id }
-                data-testid="product-detail-link"
-              >
-                <Card
-                  price={ product.price }
-                  title={ product.title }
-                  thumbnail={ product.thumbnail }
-                  key={ product.id }
-                  productId={ product.id }
-                  data={ product }
-                />
-              </Link>
-            )) }
+            { products.map((product) => (<Card
+              price={ product.price }
+              title={ product.title }
+              thumbnail={ product.thumbnail }
+              key={ product.id }
+              productId={ product.id }
+              data={ product }
+            />)) }
           </div>
         ) : (
           <span data-testid="home-initial-message">
